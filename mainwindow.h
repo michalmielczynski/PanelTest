@@ -14,6 +14,8 @@
 #include <QMainWindow>
 #include "imagepropertiesdockwidget.h"
 #include "imageeffectsdockwidget.h"
+#include <QGraphicsScene>
+#include <QImage>
 
 /**
   Target application:
@@ -44,8 +46,13 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+private slots:
+    void on_actionLoad_triggered();
+
 private:
     Ui::MainWindow *ui;
+    QGraphicsScene *scene;
+    QPixmap pixMap;
 
     ImagePropertiesDockWidget *ImagePropDockWidget;
     ImageEffectsDockWidget *ImageEffDockWidget;
