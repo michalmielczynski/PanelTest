@@ -16,6 +16,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setCentralWidget(ui->graphicsView);
+
+    ImagePropDockWidget = new ImagePropertiesDockWidget(this);
+    addDockWidget(Qt::LeftDockWidgetArea,ImagePropDockWidget);
+
+    ImageEffDockWidget = new ImageEffectsDockWidget(this);
+    addDockWidget(Qt::RightDockWidgetArea,ImageEffDockWidget);
 }
 
 MainWindow::~MainWindow()

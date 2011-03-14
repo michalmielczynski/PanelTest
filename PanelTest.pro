@@ -11,8 +11,14 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    imagepropertiesdockwidget.cpp \
+    imageeffectsdockwidget.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    imagepropertiesdockwidget.h \
+    imageeffectsdockwidget.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    imagepropertiesdockwidget.ui \
+    imageeffectsdockwidget.ui

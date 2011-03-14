@@ -12,6 +12,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "imagepropertiesdockwidget.h"
+#include "imageeffectsdockwidget.h"
 
 /**
   Target application:
@@ -44,6 +46,9 @@ public:
 
 private:
     Ui::MainWindow *ui;
+
+    ImagePropertiesDockWidget *ImagePropDockWidget;
+    ImageEffectsDockWidget *ImageEffDockWidget;
 };
 
 #endif // MAINWINDOW_H
