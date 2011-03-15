@@ -42,11 +42,11 @@ void MainWindow::on_actionLoad_triggered()
 
 
 
-    pixMap.load(filename);
-    if(!pixMap.isNull()){
+    pixmap.load(filename);
+    if(!pixmap.isNull()){
 
 	QGraphicsPixmapItem *item= new QGraphicsPixmapItem;
-	item->setPixmap(pixMap);
+	item->setPixmap(pixmap);
 
 	scene->clear();
 	scene->addItem(item);
@@ -61,7 +61,7 @@ void MainWindow::blurImage(int blurRange){
 
     qDebug()<<blurRange;
 
-    QGraphicsPixmapItem *itemHelper = new QGraphicsPixmapItem(pixMap);
+    QGraphicsPixmapItem *itemHelper = new QGraphicsPixmapItem(pixmap);
     QGraphicsBlurEffect effect;
     effect.setBlurHints(QGraphicsBlurEffect::QualityHint);
     effect.setBlurRadius(blurRange);
@@ -89,14 +89,14 @@ void MainWindow::setupGraphicsView()
 
 void MainWindow::setupDockImageProperties()
 {
-    ImagePropDockWidget = new ImagePropertiesDockWidget(this);
-    addDockWidget(Qt::LeftDockWidgetArea,ImagePropDockWidget);
+    imagePropDockWidget = new ImagePropertiesDockWidget(this);
+    addDockWidget(Qt::LeftDockWidgetArea,imagePropDockWidget);
 
-    ImageEffDockWidget = new ImageEffectsDockWidget(this);
-    addDockWidget(Qt::RightDockWidgetArea,ImageEffDockWidget);
+    imageEffDockWidget = new ImageEffectsDockWidget(this);
+    addDockWidget(Qt::RightDockWidgetArea,imageEffDockWidget);
 }
 
 void MainWindow::makeConnections()
 {
-    connect(ImageEffDockWidget,SIGNAL(blur(int)),this,SLOT(blurImage(int)));
+    connect(imageEffDockWidget,SIGNAL(blur(int)),this,SLOT(blurImage(int)));
 }
