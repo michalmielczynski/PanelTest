@@ -17,14 +17,8 @@ ImageEffectsDockWidget::~ImageEffectsDockWidget()
 
 void ImageEffectsDockWidget::on_horizontalSlider_sliderMoved(int position)
 {
-<<<<<<< HEAD
+
     emit blur(ui->horizontalSlider->value());
 }
 
 
-
-
-=======
-    /// @todo blur code here, please
-}
->>>>>>> f296ac5ac9fa9f30f99e612ff9cad3988f36245c
