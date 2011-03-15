@@ -61,8 +61,7 @@ void MainWindow::blurImage(int blurRange){
 
     qDebug()<<blurRange;
 
-    QGraphicsPixmapItem *itemHelper;
-    itemHelper->setPixmap(pixMap);
+    QGraphicsPixmapItem *itemHelper = new QGraphicsPixmapItem(pixMap);
     QGraphicsBlurEffect effect;
     effect.setBlurHints(QGraphicsBlurEffect::QualityHint);
     effect.setBlurRadius(blurRange);
@@ -70,7 +69,7 @@ void MainWindow::blurImage(int blurRange){
     itemHelper->setGraphicsEffect(&effect);
     scene->clear();
 
-
+    /// @note this is bad design, adding to the scene should be done once.
     scene->addItem(itemHelper);
     ui->graphicsView->setScene(scene);
 }
