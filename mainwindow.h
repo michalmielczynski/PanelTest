@@ -48,9 +48,14 @@ public:
 
 private slots:
     void on_actionLoad_triggered();
-    void blurImage();
+    void blurImage(int blurRange);
 
 private:
+
+    void setupGraphicsView();
+    void setupDockImageProperties();
+    void makeConnections();
+
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QPixmap pixMap;

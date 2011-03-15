@@ -13,26 +13,17 @@
 #include <QGraphicsPixmapItem>
 #include <QFileDialog>
 #include <QGraphicsBlurEffect>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    ui->setupUi(this);
-    setCentralWidget(ui->graphicsView);
 
-    QBrush a(QColor(0,0,0));
-    ui->graphicsView->setBackgroundBrush(a);
+    setupGraphicsView();
+    setupDockImageProperties();
+    makeConnections();
 
-    scene = new QGraphicsScene;
-    ui->graphicsView->setScene(scene);
-
-
-    ImagePropDockWidget = new ImagePropertiesDockWidget(this);
-    addDockWidget(Qt::LeftDockWidgetArea,ImagePropDockWidget);
-
-    ImageEffDockWidget = new ImageEffectsDockWidget(this);
-    addDockWidget(Qt::RightDockWidgetArea,ImageEffDockWidget);
 }
 
 MainWindow::~MainWindow()
@@ -51,30 +42,63 @@ void MainWindow::on_actionLoad_triggered()
 
 
 
-    QPixmap pixMap(filename);
+    pixMap.load(filename);
     if(!pixMap.isNull()){
 
 	QGraphicsPixmapItem *item= new QGraphicsPixmapItem;
 	item->setPixmap(pixMap);
 
-
-	QGraphicsBlurEffect effect;
-	effect.setBlurHints(QGraphicsBlurEffect::QualityHint);
-	effect.setBlurRadius(5);
-
-	item->setGraphicsEffect(&effect);
 	scene->clear();
 	scene->addItem(item);
 	ui->graphicsView->setScene(scene);
 
-//	item->pixmap().toImage().save("blur.png");
+
 	//ui->graphicsView->fitInView(item,Qt::KeepAspectRatio);
     }
 }
 
-void MainWindow::blurImage()
+void MainWindow::blurImage(int blurRange){
+
+    qDebug()<<blurRange;
+
+    QGraphicsPixmapItem *itemHelper;
+    itemHelper->setPixmap(pixMap);
+    QGraphicsBlurEffect effect;
+    effect.setBlurHints(QGraphicsBlurEffect::QualityHint);
+    effect.setBlurRadius(blurRange);
+
+    itemHelper->setGraphicsEffect(&effect);
+    scene->clear();
+
+
+    scene->addItem(itemHelper);
+    ui->graphicsView->setScene(scene);
+}
+
+void MainWindow::setupGraphicsView()
 {
-//    QPixmap pixMap = scene->focusItem();
-//    QGraphicsBlurEffect effect(this);
-//    effect.
+    ui->setupUi(this);
+    setCentralWidget(ui->graphicsView);
+
+    QBrush a(QColor(0,0,0));
+    ui->graphicsView->setBackgroundBrush(a);
+
+    scene = new QGraphicsScene;
+    ui->graphicsView->setScene(scene);
+
+}
+
+void MainWindow::setupDockImageProperties()
+{
+    ImagePropDockWidget = new ImagePropertiesDockWidget(this);
+    addDockWidget(Qt::LeftDockWidgetArea,ImagePropDockWidget);
+
+    ImageEffDockWidget = new ImageEffectsDockWidget(this);
+    addDockWidget(Qt::RightDockWidgetArea,ImageEffDockWidget);
+}
+
+void MainWindow::makeConnections()
+{
+    connect(ImageEffDockWidget,SIGNAL(blur(int)),this,SLOT(blurImage(int)));
+
 }
