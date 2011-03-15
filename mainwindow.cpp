@@ -100,5 +100,4 @@ void MainWindow::setupDockImageProperties()
 void MainWindow::makeConnections()
 {
     connect(ImageEffDockWidget,SIGNAL(blur(int)),this,SLOT(blurImage(int)));
-
 }
