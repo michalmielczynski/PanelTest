@@ -18,16 +18,23 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    setCentralWidget(ui->graphicsView);
-    QBrush a(QColor(0,0,0));
-    ui->graphicsView->setBackgroundBrush(a);
-    scene = new QGraphicsScene;
-    ui->graphicsView->setScene(scene);
-    ImagePropDockWidget = new ImagePropertiesDockWidget(this);
-    addDockWidget(Qt::LeftDockWidgetArea,ImagePropDockWidget);
+    /// @todo move to setupGraphicsView method
+    {
+	setCentralWidget(ui->graphicsView);
+	QBrush a(QColor(0,0,0));
+	ui->graphicsView->setBackgroundBrush(a);
+	scene = new QGraphicsScene;
+	ui->graphicsView->setScene(scene);
+    }
 
-    ImageEffDockWidget = new ImageEffectsDockWidget(this);
-    addDockWidget(Qt::RightDockWidgetArea,ImageEffDockWidget);
+    /// @todo move to setupDockImageProperties method
+    {
+	ImagePropDockWidget = new ImagePropertiesDockWidget(this);
+	addDockWidget(Qt::LeftDockWidgetArea,ImagePropDockWidget);
+
+	ImageEffDockWidget = new ImageEffectsDockWidget(this);
+	addDockWidget(Qt::RightDockWidgetArea,ImageEffDockWidget);
+    }
 }
 
 MainWindow::~MainWindow()
@@ -43,7 +50,7 @@ void MainWindow::on_actionLoad_triggered()
 	    QDir::currentPath(),
 	    tr("Image Files (*.jpg *.jpeg *.png);;All files (*.*)") );
 
-
+    /// @note usage of QFileDialog::Accepted perhaps?
 
 
     QPixmap pixMap(filename);
