@@ -15,6 +15,7 @@ public:
     explicit ImageEffectsDockWidget(QWidget *parent = 0);
     ~ImageEffectsDockWidget();
 
+    void on_horizontalSlider_sliderMoved(int position);
 private:
     Ui::ImageEffectsDockWidget *ui;
 };

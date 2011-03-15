@@ -14,3 +14,8 @@ ImageEffectsDockWidget::~ImageEffectsDockWidget()
 {
     delete ui;
 }
+
+void ImageEffectsDockWidget::on_horizontalSlider_sliderMoved(int position)
+{
+    /// @todo blur code here, please
+}
