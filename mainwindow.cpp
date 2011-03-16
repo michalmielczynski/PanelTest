@@ -45,11 +45,9 @@ void MainWindow::on_actionLoad_triggered()
     pixmap.load(filename);
     if(!pixmap.isNull()){
 
-	QGraphicsPixmapItem *item= new QGraphicsPixmapItem;
-	item->setPixmap(pixmap);
-
+	pixmapItemPointer = new QGraphicsPixmapItem;
 	scene->clear();
-	scene->addItem(item);
+	pixmapItemPointer = scene->addPixmap(pixmap);
 	ui->graphicsView->setScene(scene);
 
 
@@ -59,19 +57,16 @@ void MainWindow::on_actionLoad_triggered()
 
 void MainWindow::blurImage(int blurRange){
 
+
+
     qDebug()<<blurRange;
 
-    QGraphicsPixmapItem *itemHelper = new QGraphicsPixmapItem(pixmap);
-    QGraphicsBlurEffect effect;
-    effect.setBlurHints(QGraphicsBlurEffect::QualityHint);
-    effect.setBlurRadius(blurRange);
+    QGraphicsBlurEffect *effect = new QGraphicsBlurEffect(this);
+    effect->setBlurHints(QGraphicsBlurEffect::QualityHint);
+    effect->setBlurRadius(blurRange);
 
-    itemHelper->setGraphicsEffect(&effect);
-    scene->clear();
-
-    /// @note this is bad design, adding to the scene should be done once.
-    scene->addItem(itemHelper);
-    ui->graphicsView->setScene(scene);
+    pixmapItemPointer->setGraphicsEffect(effect);
+    scene->update(pixmapItemPointer->boundingRect());
 }
 
 void MainWindow::setupGraphicsView()

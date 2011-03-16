@@ -18,7 +18,7 @@ ImageEffectsDockWidget::~ImageEffectsDockWidget()
 void ImageEffectsDockWidget::on_horizontalSlider_sliderMoved(int position)
 {
 
-    emit blur(ui->horizontalSlider->value());
+    emit blur(position);
 }
 
 

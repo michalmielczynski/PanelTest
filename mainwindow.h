@@ -59,6 +59,7 @@ private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QPixmap pixmap; /// @note naming fixed
+    QGraphicsPixmapItem *pixmapItemPointer;
 
     /// @badcode member & method names were can NOT start with capitals, like ImagePropDockWidget!!!
     /// @note naming fixed
