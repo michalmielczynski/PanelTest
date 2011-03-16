@@ -14,9 +14,11 @@ class ImageEffectsDockWidget : public QDockWidget
 public:
     explicit ImageEffectsDockWidget(QWidget *parent = 0);
     ~ImageEffectsDockWidget();
+    /// @todo effect methods here
 
 
 private slots:
+    /// @note this is OK, but should internally call public "effect" method;
     void on_horizontalSlider_sliderMoved(int position);
 
 signals:

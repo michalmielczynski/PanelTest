@@ -15,6 +15,9 @@
 #include <QGraphicsBlurEffect>
 #include <QDebug>
 
+/// @note remove unwanted empty lines. Use only ONE empty line to separate some code blocks. Use Ctrl+I to reformat selected block.
+/// @note always commit clean, well formatted code
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -39,9 +42,6 @@ void MainWindow::on_actionLoad_triggered()
 	    QDir::currentPath(),
 	    tr("Image Files (*.jpg *.jpeg *.png);;All files (*.*)") );
 
-
-
-
     pixmap.load(filename);
     if(!pixmap.isNull()){
 
@@ -50,15 +50,12 @@ void MainWindow::on_actionLoad_triggered()
 	pixmapItemPointer = scene->addPixmap(pixmap);
 	ui->graphicsView->setScene(scene);
 
-
 	//ui->graphicsView->fitInView(item,Qt::KeepAspectRatio);
     }
 }
 
+/// @deprecated move to ImageEffectsDockWidget class;
 void MainWindow::blurImage(int blurRange){
-
-
-
     qDebug()<<blurRange;
 
     QGraphicsBlurEffect *effect = new QGraphicsBlurEffect(this);
@@ -66,7 +63,9 @@ void MainWindow::blurImage(int blurRange){
     effect->setBlurRadius(blurRange);
 
     pixmapItemPointer->setGraphicsEffect(effect);
-    scene->update(pixmapItemPointer->boundingRect());
+
+    /// @bug this causes the scene to be updated twice! NOT good.
+//    scene->update(pixmapItemPointer->boundingRect());
 }
 
 void MainWindow::setupGraphicsView()
