@@ -22,8 +22,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setupGraphicsView();
     setupDockImageProperties();
     makeConnections();
-
-
 }
 
 MainWindow::~MainWindow()
@@ -44,8 +42,6 @@ void MainWindow::on_actionLoad_triggered(){
 	scene->update(pixmapItemPointer->boundingRect()); /// @note Code reduction - initialisation moved to constructor - setupGraphicsView()
     }
 }
-
-/// @deprecated move to ImageEffectsDockWidget class;
 
 
 void MainWindow::setupGraphicsView(){
