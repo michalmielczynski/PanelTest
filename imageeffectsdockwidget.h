@@ -13,7 +13,7 @@ class ImageEffectsDockWidget : public QDockWidget
     Q_OBJECT
 
 public:
-    explicit ImageEffectsDockWidget(QGraphicsPixmapItem *p,QWidget *parent = 0);
+    explicit ImageEffectsDockWidget(QGraphicsPixmapItem *p, QWidget *parent = 0);
     ~ImageEffectsDockWidget();
     void blurImage(int blurRange);
 
