@@ -15,17 +15,14 @@
 #include <QGraphicsBlurEffect>
 #include <QDebug>
 
-/// @note remove unwanted empty lines. Use only ONE empty line to separate some code blocks. Use Ctrl+I to reformat selected block.
-/// @note always commit clean, well formatted code
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-
     setupGraphicsView();
     setupDockImageProperties();
     makeConnections();
+
 
 }
 
@@ -34,8 +31,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_actionLoad_triggered()
-{
+void MainWindow::on_actionLoad_triggered(){
     QString filename = QFileDialog::getOpenFileName(
 	    this,
 	    tr("Open Document"),
@@ -44,32 +40,15 @@ void MainWindow::on_actionLoad_triggered()
 
     pixmap.load(filename);
     if(!pixmap.isNull()){
-
-	pixmapItemPointer = new QGraphicsPixmapItem;
-	scene->clear();
-	pixmapItemPointer = scene->addPixmap(pixmap);
-	ui->graphicsView->setScene(scene);
-
-	//ui->graphicsView->fitInView(item,Qt::KeepAspectRatio);
+	pixmapItemPointer->setPixmap(pixmap);
+	scene->update(pixmapItemPointer->boundingRect()); /// @note Code reduction - initialisation moved to constructor - setupGraphicsView()
     }
 }
 
 /// @deprecated move to ImageEffectsDockWidget class;
-void MainWindow::blurImage(int blurRange){
-    qDebug()<<blurRange;
 
-    QGraphicsBlurEffect *effect = new QGraphicsBlurEffect(this);
-    effect->setBlurHints(QGraphicsBlurEffect::QualityHint);
-    effect->setBlurRadius(blurRange);
 
-    pixmapItemPointer->setGraphicsEffect(effect);
-
-    /// @bug this causes the scene to be updated twice! NOT good.
-//    scene->update(pixmapItemPointer->boundingRect());
-}
-
-void MainWindow::setupGraphicsView()
-{
+void MainWindow::setupGraphicsView(){
     ui->setupUi(this);
     setCentralWidget(ui->graphicsView);
 
@@ -79,18 +58,20 @@ void MainWindow::setupGraphicsView()
     scene = new QGraphicsScene;
     ui->graphicsView->setScene(scene);
 
+    pixmapItemPointer = new QGraphicsPixmapItem;
+    pixmapItemPointer = scene->addPixmap(pixmap);
+    ui->graphicsView->setScene(scene);
+
 }
 
-void MainWindow::setupDockImageProperties()
-{
+void MainWindow::setupDockImageProperties(){
     imagePropDockWidget = new ImagePropertiesDockWidget(this);
     addDockWidget(Qt::LeftDockWidgetArea,imagePropDockWidget);
 
-    imageEffDockWidget = new ImageEffectsDockWidget(this);
+    imageEffDockWidget = new ImageEffectsDockWidget(pixmapItemPointer,this);
     addDockWidget(Qt::RightDockWidgetArea,imageEffDockWidget);
 }
 
-void MainWindow::makeConnections()
-{
-    connect(imageEffDockWidget,SIGNAL(blur(int)),this,SLOT(blurImage(int)));
+void MainWindow::makeConnections(){
+
 }

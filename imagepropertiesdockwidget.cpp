@@ -10,7 +10,6 @@ ImagePropertiesDockWidget::ImagePropertiesDockWidget(QWidget *parent) :
     setMinimumSize(200,200);
 }
 
-ImagePropertiesDockWidget::~ImagePropertiesDockWidget()
-{
+ImagePropertiesDockWidget::~ImagePropertiesDockWidget(){
     delete ui;
 }

@@ -1,5 +1,7 @@
 #include "imageeffectsdockwidget.h"
 #include "ui_imageeffectsdockwidget.h"
+#include <QDebug>
+#include <QGraphicsBlurEffect>
 
 /**
   Class description:
@@ -13,25 +15,34 @@
   - do some efficiency tests for bigger images (check if OpenGL widgets would help);
   */
 
-ImageEffectsDockWidget::ImageEffectsDockWidget(QWidget *parent) :
+ImageEffectsDockWidget::ImageEffectsDockWidget(QGraphicsPixmapItem *p,QWidget *parent) :
     QDockWidget(parent),
     ui(new Ui::ImageEffectsDockWidget)
-  /// @todo pass QPixmap pointer here
 {
+    m_pGraphicsPixmapItem = p;
     ui->setupUi(this);
     setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     setMinimumSize(200,200);
 }
 
-ImageEffectsDockWidget::~ImageEffectsDockWidget()
-{
+ImageEffectsDockWidget::~ImageEffectsDockWidget(){
     delete ui;
 }
 
-void ImageEffectsDockWidget::on_horizontalSlider_sliderMoved(int position)
-{
-    /// @note remove unwanted empty lines. Use only ONE empty line to separate some code blocks.
-    emit blur(position);
+void ImageEffectsDockWidget::on_horizontalSlider_sliderMoved(int position){
+    blurImage(position);
+}
+
+void ImageEffectsDockWidget::blurImage(int blurRange){
+
+    qDebug()<<blurRange;
+
+    QGraphicsBlurEffect *effect = new QGraphicsBlurEffect(this);
+    effect->setBlurHints(QGraphicsBlurEffect::QualityHint);
+    effect->setBlurRadius(blurRange);
+    m_pGraphicsPixmapItem->setGraphicsEffect(effect);
+    /// @note prolem with scene
+    //scene->update(pixmapItemPointer->boundingRect());
 }
 
 

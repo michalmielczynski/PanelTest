@@ -48,7 +48,7 @@ public:
 
 private slots:
     void on_actionLoad_triggered();
-    void blurImage(int blurRange);
+
 
 private:
 
