@@ -16,13 +16,12 @@ public:
     explicit ImageEffectsDockWidget(QGraphicsPixmapItem *p, QWidget *parent = 0);
     ~ImageEffectsDockWidget();
     void blurImage(int blurRange);
+    void bloomImage(int bloomRange);
 
 private slots:
-    /// @note this is OK, but should internally call public "effect" method;
     void on_horizontalSlider_sliderMoved(int position);
 
-signals:
-void updateScene();
+    void on_horizontalSlider_2_sliderMoved(int position);
 
 private:
     Ui::ImageEffectsDockWidget *ui;

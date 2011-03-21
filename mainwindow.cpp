@@ -39,7 +39,7 @@ void MainWindow::on_actionLoad_triggered(){
     pixmap.load(filename);
     if(!pixmap.isNull()){
 	pixmapItemPointer->setPixmap(pixmap);
-	scene->update(pixmapItemPointer->boundingRect()); /// @note Code reduction - initialisation moved to constructor - setupGraphicsView()
+	scene->update(pixmapItemPointer->boundingRect());
     }
 }
 
@@ -57,7 +57,6 @@ void MainWindow::setupGraphicsView(){
     pixmapItemPointer = new QGraphicsPixmapItem;
     pixmapItemPointer = scene->addPixmap(pixmap);
     ui->graphicsView->setScene(scene);
-
 }
 
 void MainWindow::setupDockImageProperties(){

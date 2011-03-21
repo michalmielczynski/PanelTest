@@ -58,7 +58,7 @@ private:
 
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
-    QPixmap pixmap; /// @note naming fixed
+    QPixmap pixmap;
     QGraphicsPixmapItem *pixmapItemPointer;
 
     ImagePropertiesDockWidget *imagePropDockWidget;

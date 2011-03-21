@@ -13,11 +13,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     imagepropertiesdockwidget.cpp \
-    imageeffectsdockwidget.cpp
+    imageeffectsdockwidget.cpp \
+    qgraphicsbloomeffect.cpp
 
 HEADERS  += mainwindow.h \
     imagepropertiesdockwidget.h \
-    imageeffectsdockwidget.h
+    imageeffectsdockwidget.h \
+    qgraphicsbloomeffect.h
 
 FORMS    += mainwindow.ui \
     imagepropertiesdockwidget.ui \
