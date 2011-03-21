@@ -10,10 +10,18 @@
   - this class should have pointer to QPixmap from main class, initiated in constructor;
   - effects might be applied from GUI elements OR from mainwindow (calling same public methods declared in h file);
   - change QSliders to QSpinBox;
+  - filters to implement
+    - sharpen;
+    - blur;
+    - bloom/glow;
+    - vignetting;
+    - chromatic abberation;
+
+  - implement "effect stack" if possible, so effect might be applied "one over other";
+  - google out existing Qt based image filtering code, propose possible adaptations;
 
   /// @note
   - make sure main QPixmap is initiated before calling constructor here;
-  - implement "effect stack" if possible, so effect might be applied "one over other";
   - do some efficiency tests for bigger images (check if OpenGL widgets would help);
 */
 
