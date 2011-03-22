@@ -22,9 +22,9 @@ public:
 
 private slots:
 
-    void on_blurOpacity_valueChanged(int );
-    void on_blurBrightness_valueChanged(int );
-    void on_blurRadius_valueChanged(int );
+    void on_bloomOpacity_valueChanged(int );
+    void on_bloomBrightness_valueChanged(int );
+    void on_bloomRadius_valueChanged(int );
 
 
     void on_Blur_valueChanged(int );
@@ -34,9 +34,13 @@ private:
     Ui::ImageEffectsDockWidget *ui;
     QGraphicsPixmapItem *m_pGraphicsPixmapItem;
 
+    QGraphicsBloomEffect *m_effect;
+
+    /// @todo remove this, you already have those values i.e: ui->blurBrightness->value();
     int m_bloomBlurRadius;
     int m_bloomOpacity;
     int m_bloomBrightness;
+    /// @endcode
 
 };
 

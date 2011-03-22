@@ -24,7 +24,7 @@
        <item>
         <widget class="QSpinBox" name="blurRadius">
          <property name="prefix">
-          <string>Blur radius : </string>
+          <string>Radius : </string>
          </property>
          <property name="maximum">
           <number>20</number>
