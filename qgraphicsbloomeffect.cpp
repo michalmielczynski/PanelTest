@@ -25,18 +25,15 @@ void QGraphicsBloomEffect::draw(QPainter *painter){
 }
 
 
-void QGraphicsBloomEffect::setRadius(int radiusRange)
-{
+void QGraphicsBloomEffect::setRadius(int radiusRange){
     radius=radiusRange;
 }
 
-void QGraphicsBloomEffect::setOpacity(int opacityRange)
-{
+void QGraphicsBloomEffect::setOpacity(int opacityRange){
     opacity = opacityRange;
 }
 
-void QGraphicsBloomEffect::setBrightness(int brightnessRange)
-{
+void QGraphicsBloomEffect::setBrightness(int brightnessRange){
     brightness = brightnessRange;
 }
 
@@ -53,7 +50,6 @@ QImage QGraphicsBloomEffect::blurred(const QImage& image, const QRect& rect, int
     int r2 = rect.bottom();
     int c1 = rect.left();
     int c2 = rect.right();
-
     int bpl = result.bytesPerLine();
     int rgba[4];
     unsigned char* p;
@@ -106,8 +102,7 @@ QImage QGraphicsBloomEffect::blurred(const QImage& image, const QRect& rect, int
 }
 
 // Change brightness (positive integer) of each pixel
-QImage QGraphicsBloomEffect::brightened(const QImage& image, int brightness)
-{
+QImage QGraphicsBloomEffect::brightened(const QImage& image, int brightness){
     int tab[ 256 ];
     for (int i = 0; i < 256; ++i)
 	tab[i] = qMin(i + brightness, 255);
@@ -123,8 +118,7 @@ QImage QGraphicsBloomEffect::brightened(const QImage& image, int brightness)
 }
 
 // Composite two QImages using given composition mode and opacity
-QImage QGraphicsBloomEffect::composited(const QImage& img1, const QImage& img2, int opacity, QPainter::CompositionMode mode)
-{
+QImage QGraphicsBloomEffect::composited(const QImage& img1, const QImage& img2, int opacity, QPainter::CompositionMode mode){
     QImage result = img1.convertToFormat(QImage::Format_ARGB32_Premultiplied);
     QPainter painter(&result);
     painter.setCompositionMode(mode);
@@ -136,8 +130,7 @@ QImage QGraphicsBloomEffect::composited(const QImage& img1, const QImage& img2, 
 
 // Apply Bloom effect with the 4 parameters
 QImage QGraphicsBloomEffect::bloomed(const QImage& img, int blurRadius, int brightness, int opacity,
-	       QPainter::CompositionMode mode)
-{
+	       QPainter::CompositionMode mode){
     // (1) blur the original image
     QImage step1 = blurred(img, img.rect(), blurRadius);
 
