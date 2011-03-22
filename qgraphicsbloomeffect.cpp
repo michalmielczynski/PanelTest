@@ -2,6 +2,7 @@
 #include <QPainter>
 #include <QPoint>
 #include <QDebug>
+#include <QRgb>
 
 QGraphicsBloomEffect::QGraphicsBloomEffect(QObject *parent) :
     QGraphicsEffect(parent)
@@ -13,17 +14,12 @@ void QGraphicsBloomEffect::draw(QPainter *painter){
     QPoint offset;
     if(sourceIsPixmap()){
 	const QPixmap pixmap = sourcePixmap(Qt::LogicalCoordinates,&offset);
-
-	qDebug()<<radius;
-	pixmap.fromImage(bloomed(pixmap.toImage(),radius,radius,radius,QPainter::CompositionMode_Multiply));
-	painter->drawPixmap(offset,pixmap);
+	painter->drawPixmap(0, 0,pixmap.fromImage(bloomed(pixmap.toImage(),radius,brightness,opacity,QPainter::CompositionMode_Lighten)));
     }
     else{
 	const QPixmap pixmap = sourcePixmap(Qt::DeviceCoordinates,&offset);
 	painter->setWorldTransform(QTransform());
-
-	pixmap.fromImage(bloomed(pixmap.toImage(),radius,4,1,QPainter::CompositionMode_Multiply));
-	painter->drawPixmap(offset,pixmap);
+	painter->drawPixmap(0, 0,pixmap.fromImage(bloomed(pixmap.toImage(),radius,brightness,opacity,QPainter::CompositionMode_Lighten)));
     }
 
 }
@@ -32,6 +28,16 @@ void QGraphicsBloomEffect::draw(QPainter *painter){
 void QGraphicsBloomEffect::setRadius(int radiusRange)
 {
     radius=radiusRange;
+}
+
+void QGraphicsBloomEffect::setOpacity(int opacityRange)
+{
+    opacity = opacityRange;
+}
+
+void QGraphicsBloomEffect::setBrightness(int brightnessRange)
+{
+    brightness = brightnessRange;
 }
 
 

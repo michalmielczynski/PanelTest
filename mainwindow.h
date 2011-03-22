@@ -60,7 +60,6 @@ private:
     QGraphicsScene *scene;
     QPixmap pixmap;
     QGraphicsPixmapItem *pixmapItemPointer;
-
     ImagePropertiesDockWidget *imagePropDockWidget;
     ImageEffectsDockWidget *imageEffDockWidget;
 };
