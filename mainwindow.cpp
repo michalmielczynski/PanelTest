@@ -36,9 +36,9 @@ void MainWindow::on_actionLoad_triggered(){
 	    QDir::currentPath(),
 	    tr("Image Files (*.jpg *.jpeg *.png);;All files (*.*)") );
 
-    pixmap.load(filename);
-    if(!pixmap.isNull()){
-	pixmapItemPointer->setPixmap(pixmap);
+    m_pixmap.load(filename);
+    if(!m_pixmap.isNull()){
+	pixmapItemPointer->setPixmap(m_pixmap);
 	scene->update(pixmapItemPointer->boundingRect());
     }
 }
@@ -55,7 +55,7 @@ void MainWindow::setupGraphicsView(){
     ui->graphicsView->setScene(scene);
 
     pixmapItemPointer = new QGraphicsPixmapItem;
-    pixmapItemPointer = scene->addPixmap(pixmap);
+    pixmapItemPointer = scene->addPixmap(m_pixmap);
     ui->graphicsView->setScene(scene);
 }
 

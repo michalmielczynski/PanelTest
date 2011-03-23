@@ -17,22 +17,6 @@
 #include <QGraphicsScene>
 #include <QImage>
 
-/**
-  Target application:
-
-  - main application's window contains QGraphicsView, that displays image;
-  - image is loaded by user (from local jpg, png files) using dialog windows;
-  - two dock widgets are available:
-    - ImagePropertiesDockWidget;
-    - ImageEffectsDockWidget;
-  - both docks inherit from QDockWidget;
-  - source code in english (class, methods, comments, output, etc.);
-  - use of translate (tr) method for every output strings;
-
-  // @todo add docks functionality
-
-  */
-
 
 namespace Ui {
     class MainWindow;
@@ -58,7 +42,7 @@ private:
 
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
-    QPixmap pixmap;
+    QPixmap m_pixmap;
     QGraphicsPixmapItem *pixmapItemPointer;
     ImagePropertiesDockWidget *imagePropDockWidget;
     ImageEffectsDockWidget *imageEffDockWidget;

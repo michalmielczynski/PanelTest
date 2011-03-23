@@ -11,11 +11,14 @@
   - effects might be applied from GUI elements OR from mainwindow (calling same public methods declared in h file);
   - change QSliders to QSpinBox;
   - filters to implement
-    - sharpen;
-    - blur;
     - bloom/glow;
-    - vignetting;
     - chromatic abberation;
+    - sharpen;
+    - hot pixel;
+
+    - ...
+    - blur;
+    - vignetting;
 
   - implement "effect stack" if possible, so effect might be applied "one over other";
   - google out existing Qt based image filtering code, propose possible adaptations;
@@ -47,6 +50,7 @@ ImageEffectsDockWidget::~ImageEffectsDockWidget(){
 
 void ImageEffectsDockWidget::on_Blur_valueChanged(int position){
     blurImage(position);
+
 }
 
 void ImageEffectsDockWidget::blurImage(int blurRange){
@@ -58,6 +62,7 @@ void ImageEffectsDockWidget::blurImage(int blurRange){
 
 void ImageEffectsDockWidget::bloomImage(int bloomRange, int opacityRange, int brightnessRange){
     /// @note any functionality here?
+    m_pGraphicsPixmapItem->setPixmap(m_effect->filter(m_pGraphicsPixmapItem->pixmap(), bloomRange, ...));
 }
 
 void ImageEffectsDockWidget::on_bloomRadius_valueChanged(int blurRadius){

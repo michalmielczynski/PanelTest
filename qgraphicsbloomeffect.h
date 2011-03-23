@@ -24,6 +24,7 @@ private:
     int opacity;
     int brightness;
 
+    QPixmap filter(const QPixmap &pixmap);
     QImage blurred(const QImage& image, const QRect& rect, int radius);
     QImage brightened(const QImage& image, int brightness);
     QImage composited(const QImage& img1, const QImage& img2, int opacity, QPainter::CompositionMode mode);
