@@ -34,7 +34,7 @@ private:
     Ui::ImageEffectsDockWidget *ui;
     QGraphicsPixmapItem *m_pGraphicsPixmapItem;
 
-    QGraphicsBloomEffect *m_effect;
+    QGraphicsBloomFilter *m_effectBloom;
 
     /// @todo remove this, you already have those values i.e: ui->blurBrightness->value();
     int m_bloomBlurRadius;

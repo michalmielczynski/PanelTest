@@ -4,11 +4,11 @@
 #include <QGraphicsEffect>
 #include <QPainter>
 
-class QGraphicsBloomEffect : public QGraphicsEffect
+class QGraphicsBloomFilter : public QGraphicsEffect
 {
     Q_OBJECT
 public:
-    explicit QGraphicsBloomEffect(QObject *parent = 0);
+    explicit QGraphicsBloomFilter(QObject *parent = 0);
     void setRadius(int radiusRange);
     void setOpacity(int opacityRange);
     void setBrightness(int brightnessRange);
