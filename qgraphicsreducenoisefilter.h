@@ -2,6 +2,7 @@
 #define QGRAPHICSREDUCENOISEFILTER_H
 
 #include <QObject>
+#include <QPixmap>
 
 class QGraphicsReduceNoiseFilter : public QObject
 {
@@ -9,7 +10,7 @@ class QGraphicsReduceNoiseFilter : public QObject
 public:
     explicit QGraphicsReduceNoiseFilter(QObject *parent = 0);
 
-    QPixmap filter(const QPixmap &pixmap, int blurRadius, int brightness, int opacity);
+    QPixmap filter(const QPixmap &pixmap, int size);
 signals:
 
 public slots:

@@ -8,14 +8,10 @@ QGraphicsReduceNoiseFilter::QGraphicsReduceNoiseFilter(QObject *parent) :
 }
 
 
-QPixmap QGraphicsReduceNoiseFilter::filter(const QPixmap &pixmap){
+QPixmap QGraphicsReduceNoiseFilter::filter(const QPixmap &pixmap, int size){
 
     QImage img = pixmap.toImage();
-
-    int ApetureMin = -(Size/2);
-    int ApetureMax = (Size/2);
-
-
-
-    return QPixmap::fromImage(step3);
+    int ApetureMin = -(size/2);
+    int ApetureMax = (size/2);
+    return QPixmap::fromImage(img);
 }

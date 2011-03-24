@@ -19,9 +19,6 @@ protected:
 signals:
 
 private:
-    int radius;
-    int opacity;
-    int brightness;
 
     QPixmap filter(const QPixmap &pixmap);
     QImage blurred(const QImage& image, const QRect& rect, int radius);

@@ -1,6 +1,6 @@
 #include "imageeffectsdockwidget.h"
 #include "ui_imageeffectsdockwidget.h"
-#include "qgraphicsbloomeffect.h"
+#include "qgraphicsbloomfilter.h"
 #include <QDebug>
 #include <QGraphicsBlurEffect>
 
@@ -45,12 +45,6 @@ ImageEffectsDockWidget::ImageEffectsDockWidget(QGraphicsPixmapItem *p, QWidget *
 ImageEffectsDockWidget::~ImageEffectsDockWidget(){
     delete ui;
 }
-
-void ImageEffectsDockWidget::on_Blur_valueChanged(int position){
-    blurImage(position);
-
-}
-
 
 void ImageEffectsDockWidget::bloomImage(int bloomRange, int opacityRange, int brightnessRange){
    m_pGraphicsPixmapItem->setPixmap(m_effectBloom->filter(m_pGraphicsPixmapItem->pixmap(),bloomRange,opacityRange,brightnessRange));

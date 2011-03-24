@@ -10,17 +10,7 @@ QGraphicsBloomFilter::QGraphicsBloomFilter(QObject *parent)
 
 
 
-void QGraphicsBloomFilter::setRadius(int radiusRange){
-    radius=radiusRange;
-}
 
-void QGraphicsBloomFilter::setOpacity(int opacityRange){
-    opacity = opacityRange;
-}
-
-void QGraphicsBloomFilter::setBrightness(int brightnessRange){
-    brightness = brightnessRange;
-}
 
 
 

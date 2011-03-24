@@ -41,11 +41,11 @@ private:
     void makeConnections();
 
     Ui::MainWindow *ui;
-    QGraphicsScene *scene;
+    QGraphicsScene *m_scene;
     QPixmap m_pixmap;
-    QGraphicsPixmapItem *pixmapItemPointer;
-    ImagePropertiesDockWidget *imagePropDockWidget;
-    ImageEffectsDockWidget *imageEffDockWidget;
+    QGraphicsPixmapItem *m_pixmapItemPointer;
+    ImagePropertiesDockWidget *m_imagePropDockWidget;
+    ImageEffectsDockWidget *m_imageEffDockWidget;
 };
 
 #endif // MAINWINDOW_H

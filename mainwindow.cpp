@@ -38,8 +38,8 @@ void MainWindow::on_actionLoad_triggered(){
 
     m_pixmap.load(filename);
     if(!m_pixmap.isNull()){
-	pixmapItemPointer->setPixmap(m_pixmap);
-	scene->update(pixmapItemPointer->boundingRect());
+	m_pixmapItemPointer->setPixmap(m_pixmap);
+	m_scene->update(m_pixmapItemPointer->boundingRect());
     }
 }
 
@@ -51,20 +51,20 @@ void MainWindow::setupGraphicsView(){
     QBrush a(QColor(0,0,0));
     ui->graphicsView->setBackgroundBrush(a);
 
-    scene = new QGraphicsScene;
-    ui->graphicsView->setScene(scene);
+    m_scene = new QGraphicsScene;
+    ui->graphicsView->setScene(m_scene);
 
-    pixmapItemPointer = new QGraphicsPixmapItem;
-    pixmapItemPointer = scene->addPixmap(m_pixmap);
-    ui->graphicsView->setScene(scene);
+    m_pixmapItemPointer = new QGraphicsPixmapItem;
+    m_pixmapItemPointer = m_scene->addPixmap(m_pixmap);
+    ui->graphicsView->setScene(m_scene);
 }
 
 void MainWindow::setupDockImageProperties(){
-    imagePropDockWidget = new ImagePropertiesDockWidget(this);
-    addDockWidget(Qt::LeftDockWidgetArea,imagePropDockWidget);
+    m_imagePropDockWidget = new ImagePropertiesDockWidget(this);
+    addDockWidget(Qt::LeftDockWidgetArea,m_imagePropDockWidget);
 
-    imageEffDockWidget = new ImageEffectsDockWidget(pixmapItemPointer,this);
-    addDockWidget(Qt::RightDockWidgetArea,imageEffDockWidget);
+    m_imageEffDockWidget = new ImageEffectsDockWidget(m_pixmapItemPointer,this);
+    addDockWidget(Qt::RightDockWidgetArea,m_imageEffDockWidget);
 }
 
 void MainWindow::makeConnections(){

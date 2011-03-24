@@ -3,7 +3,7 @@
 
 #include <QDockWidget>
 #include <QGraphicsPixmapItem>
-#include "qgraphicsbloomeffect.h"
+#include "qgraphicsbloomfilter.h"
 
 namespace Ui {
     class ImageEffectsDockWidget;
@@ -26,7 +26,6 @@ private slots:
     void on_bloomRadius_valueChanged(int );
 
 
-    void on_Blur_valueChanged(int );
 
 
 private:

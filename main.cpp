@@ -10,7 +10,7 @@
 
 #include <QtGui/QApplication>
 #include "mainwindow.h"
-#include "qgraphicsbloomeffect.h"
+#include "qgraphicsbloomfilter.h"
 
 int main(int argc, char *argv[])
 {
