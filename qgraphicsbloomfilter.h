@@ -4,7 +4,7 @@
 #include <QGraphicsEffect>
 #include <QPainter>
 
-class QGraphicsBloomFilter : public QGraphicsEffect
+class QGraphicsBloomFilter : public QObject
 {
     Q_OBJECT
 public:
@@ -12,10 +12,9 @@ public:
     void setRadius(int radiusRange);
     void setOpacity(int opacityRange);
     void setBrightness(int brightnessRange);
-
+    QPixmap filter(const QPixmap &pixmap, int, int, int);
 
 protected:
-    void draw(QPainter *painter);
 
 signals:
 
@@ -28,7 +27,7 @@ private:
     QImage blurred(const QImage& image, const QRect& rect, int radius);
     QImage brightened(const QImage& image, int brightness);
     QImage composited(const QImage& img1, const QImage& img2, int opacity, QPainter::CompositionMode mode);
-    QImage bloomed(const QImage& img, int blurRadius, int brightness, int opacity,QPainter::CompositionMode mode);
+    QPixmap bloomed(const QImage& img, int blurRadius, int brightness, int opacity,QPainter::CompositionMode mode);
 
 public slots:
 

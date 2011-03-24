@@ -16,7 +16,6 @@ class ImageEffectsDockWidget : public QDockWidget
 public:
     explicit ImageEffectsDockWidget(QGraphicsPixmapItem *p, QWidget *parent = 0);
     ~ImageEffectsDockWidget();
-    void blurImage(int blurRange);
     void bloomImage(int bloomRange, int opacityRange, int brightnessRange);
 
 
@@ -33,14 +32,8 @@ private slots:
 private:
     Ui::ImageEffectsDockWidget *ui;
     QGraphicsPixmapItem *m_pGraphicsPixmapItem;
-
     QGraphicsBloomFilter *m_effectBloom;
 
-    /// @todo remove this, you already have those values i.e: ui->blurBrightness->value();
-    int m_bloomBlurRadius;
-    int m_bloomOpacity;
-    int m_bloomBrightness;
-    /// @endcode
 
 };
 

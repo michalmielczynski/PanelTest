@@ -22,7 +22,7 @@
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QSpinBox" name="blurRadius">
+        <widget class="QSpinBox" name="bloomRadius">
          <property name="prefix">
           <string>Radius : </string>
          </property>
@@ -32,7 +32,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="blurBrightness">
+        <widget class="QSpinBox" name="bloomBrightness">
          <property name="prefix">
           <string>Brightness : </string>
          </property>
@@ -42,7 +42,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QSpinBox" name="blurOpacity">
+        <widget class="QSpinBox" name="bloomOpacity">
          <property name="prefix">
           <string>Opacity : </string>
          </property>

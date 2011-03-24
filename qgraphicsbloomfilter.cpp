@@ -1,28 +1,13 @@
-#include "qgraphicsbloomeffect.h"
+#include "qgraphicsbloomfilter.h"
 #include <QPainter>
 #include <QPoint>
 #include <QDebug>
 #include <QRgb>
 
-QGraphicsBloomFilter::QGraphicsBloomFilter(QObject *parent) :
-    QGraphicsEffect(parent)
+QGraphicsBloomFilter::QGraphicsBloomFilter(QObject *parent)
 {
 }
 
-void QGraphicsBloomFilter::draw(QPainter *painter){
-
-    QPoint offset;
-    if(sourceIsPixmap()){
-	const QPixmap pixmap = sourcePixmap(Qt::LogicalCoordinates,&offset);
-	painter->drawPixmap(0, 0,pixmap.fromImage(bloomed(pixmap.toImage(),radius,brightness,opacity,QPainter::CompositionMode_Lighten)));
-    }
-    else{
-	const QPixmap pixmap = sourcePixmap(Qt::DeviceCoordinates,&offset);
-	painter->setWorldTransform(QTransform());
-	painter->drawPixmap(0, 0,pixmap.fromImage(bloomed(pixmap.toImage(),radius,brightness,opacity,QPainter::CompositionMode_Lighten)));
-    }
-
-}
 
 
 void QGraphicsBloomFilter::setRadius(int radiusRange){
@@ -129,16 +114,17 @@ QImage QGraphicsBloomFilter::composited(const QImage& img1, const QImage& img2, 
 }
 
 // Apply Bloom effect with the 4 parameters
-QImage QGraphicsBloomFilter::bloomed(const QImage& img, int blurRadius, int brightness, int opacity,
-	       QPainter::CompositionMode mode){
+QPixmap QGraphicsBloomFilter::filter(const QPixmap &pixmap, int blurRadius, int brightness, int opacity){
+
     // (1) blur the original image
+    QImage img = pixmap.toImage();
     QImage step1 = blurred(img, img.rect(), blurRadius);
 
     // (2) increase the brightness of the blurred image
     QImage step2 = brightened(step1, brightness);
 
     // (3) finally overlay with the original image
-    QImage step3 = composited(img, step2, opacity, mode);
+    QImage step3 = composited(img, step2, opacity, QPainter::CompositionMode_Lighten);
 
-    return step3;
+    return QPixmap::fromImage(step3);
 }
