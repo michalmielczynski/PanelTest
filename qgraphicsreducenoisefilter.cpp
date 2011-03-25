@@ -1,4 +1,4 @@
-#include "qgraphicsreducenoisefilter.h"
+#include "qgraphicsnoisereductionfilter.h"
 #include <QPixmap>
 #include <QImage>
 

@@ -36,29 +36,21 @@ ImageEffectsDockWidget::ImageEffectsDockWidget(QGraphicsPixmapItem *p, QWidget *
     m_pGraphicsPixmapItem(p)
 {
     m_effectBloom = new QGraphicsBloomFilter(this);
+    m_effectNoiseReduction = new QGraphicsNoiseReductionFilter(this);
     ui->setupUi(this);
     setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     setMinimumSize(200,200);
-
 }
 
 ImageEffectsDockWidget::~ImageEffectsDockWidget(){
     delete ui;
 }
 
-void ImageEffectsDockWidget::bloomImage(int bloomRange, int opacityRange, int brightnessRange){
-   m_pGraphicsPixmapItem->setPixmap(m_effectBloom->filter(m_pGraphicsPixmapItem->pixmap(),bloomRange,opacityRange,brightnessRange));
-  qDebug()<<"efekt";
+
+void ImageEffectsDockWidget::on_pushButtonBloom_clicked(){
+    m_pGraphicsPixmapItem->setPixmap(m_effectBloom->filter(m_pGraphicsPixmapItem->pixmap(),ui->bloomRadius->value(),ui->bloomOpacity->value(),ui->bloomBrightness->value()));
 }
 
-void ImageEffectsDockWidget::on_bloomRadius_valueChanged(int blurRadius){
-  bloomImage(blurRadius,ui->bloomOpacity->value(),ui->bloomBrightness->value());
-}
-
-void ImageEffectsDockWidget::on_bloomBrightness_valueChanged(int brightnessRange ){
-    bloomImage(ui->bloomRadius->value(),ui->bloomRadius->value(),brightnessRange);
-}
-
-void ImageEffectsDockWidget::on_bloomOpacity_valueChanged(int opacityRange){
-    bloomImage(ui->bloomRadius->value(),opacityRange,ui->bloomBrightness->value());
+void ImageEffectsDockWidget::on_pushButtonNoiseReduction_clicked(){
+    m_pGraphicsPixmapItem->setPixmap(m_effectNoiseReduction->filter(m_pGraphicsPixmapItem->pixmap(),ui->spinBoxNoiseReduction->value()));
 }

@@ -57,6 +57,7 @@ void MainWindow::setupGraphicsView(){
     m_pixmapItemPointer = new QGraphicsPixmapItem;
     m_pixmapItemPointer = m_scene->addPixmap(m_pixmap);
     ui->graphicsView->setScene(m_scene);
+
 }
 
 void MainWindow::setupDockImageProperties(){

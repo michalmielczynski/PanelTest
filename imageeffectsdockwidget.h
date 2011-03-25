@@ -4,6 +4,7 @@
 #include <QDockWidget>
 #include <QGraphicsPixmapItem>
 #include "qgraphicsbloomfilter.h"
+#include "qgraphicsnoisereductionfilter.h"
 
 namespace Ui {
     class ImageEffectsDockWidget;
@@ -16,22 +17,19 @@ class ImageEffectsDockWidget : public QDockWidget
 public:
     explicit ImageEffectsDockWidget(QGraphicsPixmapItem *p, QWidget *parent = 0);
     ~ImageEffectsDockWidget();
-    void bloomImage(int bloomRange, int opacityRange, int brightnessRange);
 
 
 private slots:
 
-    void on_bloomOpacity_valueChanged(int );
-    void on_bloomBrightness_valueChanged(int );
-    void on_bloomRadius_valueChanged(int );
-
-
+    void on_pushButtonNoiseReduction_clicked();
+    void on_pushButtonBloom_clicked();
 
 
 private:
     Ui::ImageEffectsDockWidget *ui;
     QGraphicsPixmapItem *m_pGraphicsPixmapItem;
     QGraphicsBloomFilter *m_effectBloom;
+    QGraphicsNoiseReductionFilter *m_effectNoiseReduction;
 
 
 };

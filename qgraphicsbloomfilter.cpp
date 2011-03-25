@@ -1,4 +1,4 @@
-#include "qgraphicsbloomfilter.h"
+    #include "qgraphicsbloomfilter.h"
 #include <QPainter>
 #include <QPoint>
 #include <QDebug>
@@ -97,7 +97,7 @@ QImage QGraphicsBloomFilter::composited(const QImage& img1, const QImage& img2, 
     QImage result = img1.convertToFormat(QImage::Format_ARGB32_Premultiplied);
     QPainter painter(&result);
     painter.setCompositionMode(mode);
-    painter.setOpacity((qreal)(opacity) / 256.0);
+    painter.setOpacity(((qreal)(opacity) / 256.0)*10);
     painter.drawImage(0, 0, img2);
     painter.end();
     return result;
@@ -106,15 +106,17 @@ QImage QGraphicsBloomFilter::composited(const QImage& img1, const QImage& img2, 
 // Apply Bloom effect with the 4 parameters
 QPixmap QGraphicsBloomFilter::filter(const QPixmap &pixmap, int blurRadius, int brightness, int opacity){
 
+    qDebug()<<blurRadius<<brightness<<opacity;
     // (1) blur the original image
     QImage img = pixmap.toImage();
+
     QImage step1 = blurred(img, img.rect(), blurRadius);
 
     // (2) increase the brightness of the blurred image
-    QImage step2 = brightened(step1, brightness);
+    QImage step2 = brightened(step1, brightness/5);
 
     // (3) finally overlay with the original image
-    QImage step3 = composited(img, step2, opacity, QPainter::CompositionMode_Lighten);
+    QImage step3 = composited(img, step2, opacity, QPainter::CompositionMode_Multiply);
 
     return QPixmap::fromImage(step3);
 }

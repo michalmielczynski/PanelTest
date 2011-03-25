@@ -1,5 +1,5 @@
-#ifndef QGraphicsNoiseReductionFilter_H
-#define QGraphicsNoiseReductionFilter_H
+#ifndef QGRAPHICSNOISEREDUCTIONFILTER_H
+#define QGRAPHICSNOISEREDUCTIONFILTER_H
 
 #include <QObject>
 #include <QPixmap>
@@ -10,11 +10,12 @@ class QGraphicsNoiseReductionFilter : public QObject
 public:
     explicit QGraphicsNoiseReductionFilter(QObject *parent = 0);
 
-    QPixmap filter(const QPixmap &pixmap, int size);
+    QPixmap filter(QPixmap, int);
+
 signals:
 
 public slots:
 
 };
 
-#endif // QGraphicsNoiseReductionFilter_H
+#endif // QGRAPHICSNOISEREDUCTIONFILTER_H
