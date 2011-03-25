@@ -3,6 +3,7 @@
 
 #include <QGraphicsEffect>
 #include <QPainter>
+#include <qgraphicsblurfilter.h>
 
 class QGraphicsBloomFilter : public QObject
 {
@@ -19,7 +20,7 @@ protected:
 signals:
 
 private:
-
+    QGraphicsBlurFilter *blur;
     QPixmap filter(const QPixmap &pixmap);
     QImage blurred(const QImage& image, const QRect& rect, int radius);
     QImage brightened(const QImage& image, int brightness);

@@ -35,8 +35,10 @@ ImageEffectsDockWidget::ImageEffectsDockWidget(QGraphicsPixmapItem *p, QWidget *
     ui(new Ui::ImageEffectsDockWidget),
     m_pGraphicsPixmapItem(p)
 {
-    m_effectBloom = new QGraphicsBloomFilter(this);
-    m_effectNoiseReduction = new QGraphicsNoiseReductionFilter(this);
+    m_filterBloom = new QGraphicsBloomFilter(this);
+    m_filterNoiseReduction = new QGraphicsNoiseReductionFilter(this);
+    m_filterBlur = new QGraphicsBlurFilter(this);
+
     ui->setupUi(this);
     setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     setMinimumSize(200,200);
@@ -48,9 +50,14 @@ ImageEffectsDockWidget::~ImageEffectsDockWidget(){
 
 
 void ImageEffectsDockWidget::on_pushButtonBloom_clicked(){
-    m_pGraphicsPixmapItem->setPixmap(m_effectBloom->filter(m_pGraphicsPixmapItem->pixmap(),ui->bloomRadius->value(),ui->bloomOpacity->value(),ui->bloomBrightness->value()));
+    m_pGraphicsPixmapItem->setPixmap(m_filterBloom->filter(m_pGraphicsPixmapItem->pixmap(),ui->bloomRadius->value(),ui->bloomOpacity->value(),ui->bloomBrightness->value()));
 }
 
 void ImageEffectsDockWidget::on_pushButtonNoiseReduction_clicked(){
-    m_pGraphicsPixmapItem->setPixmap(m_effectNoiseReduction->filter(m_pGraphicsPixmapItem->pixmap(),ui->spinBoxNoiseReduction->value()));
+    m_pGraphicsPixmapItem->setPixmap(m_filterNoiseReduction->filter(m_pGraphicsPixmapItem->pixmap(),ui->spinBoxNoiseReduction->value()));
+}
+
+void ImageEffectsDockWidget::on_pushButtonBlur_clicked()
+{
+ m_pGraphicsPixmapItem->setPixmap(m_filterBlur->filter(m_pGraphicsPixmapItem->pixmap(),ui->spinBoxBlur->value()));
 }

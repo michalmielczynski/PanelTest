@@ -5,6 +5,7 @@
 #include <QGraphicsPixmapItem>
 #include "qgraphicsbloomfilter.h"
 #include "qgraphicsnoisereductionfilter.h"
+#include "qgraphicsblurfilter.h"
 
 namespace Ui {
     class ImageEffectsDockWidget;
@@ -21,6 +22,7 @@ public:
 
 private slots:
 
+    void on_pushButtonBlur_clicked();
     void on_pushButtonNoiseReduction_clicked();
     void on_pushButtonBloom_clicked();
 
@@ -28,8 +30,9 @@ private slots:
 private:
     Ui::ImageEffectsDockWidget *ui;
     QGraphicsPixmapItem *m_pGraphicsPixmapItem;
-    QGraphicsBloomFilter *m_effectBloom;
-    QGraphicsNoiseReductionFilter *m_effectNoiseReduction;
+    QGraphicsBloomFilter *m_filterBloom;
+    QGraphicsNoiseReductionFilter *m_filterNoiseReduction;
+    QGraphicsBlurFilter *m_filterBlur;
 
 
 };
