@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QPixmap>
+#include <mytimer.h>
 
 class QGraphicsNoiseReductionFilter : public QObject
 {
@@ -15,7 +16,7 @@ public:
 signals:
 
 public slots:
-
+private:
 };
 
 #endif // QGRAPHICSNOISEREDUCTIONFILTER_H

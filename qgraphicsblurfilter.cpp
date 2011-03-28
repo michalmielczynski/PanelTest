@@ -1,6 +1,7 @@
 #include "qgraphicsblurfilter.h"
 #include <QImage>
 #include <QPixmap>
+#include <QPainter>
 
 QGraphicsBlurFilter::QGraphicsBlurFilter(QObject *parent) :
     QObject(parent)
@@ -12,6 +13,7 @@ QPixmap QGraphicsBlurFilter::filter(QPixmap pixmap,int radius)
 {
     QImage img = pixmap.toImage();
     return pixmap.fromImage(blurred(img,img.rect(),radius));
+    QPainter p;
 }
 
 

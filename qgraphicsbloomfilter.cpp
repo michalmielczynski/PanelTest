@@ -8,6 +8,7 @@
 QGraphicsBloomFilter::QGraphicsBloomFilter(QObject *parent)
 {
     blur = new QGraphicsBlurFilter(parent);
+
 }
 
 

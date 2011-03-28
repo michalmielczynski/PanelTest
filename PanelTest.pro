@@ -16,14 +16,18 @@ SOURCES += main.cpp\
     imageeffectsdockwidget.cpp \
     qgraphicsbloomfilter.cpp \
     qgraphicsnoisereductionfilter.cpp \
-    qgraphicsblurfilter.cpp
+    qgraphicsblurfilter.cpp \
+    qgraphicsvingettingfilter.cpp \
+    qgraphicssharpenfilter.cpp
 
 HEADERS  += mainwindow.h \
     imagepropertiesdockwidget.h \
     imageeffectsdockwidget.h \
     qgraphicsbloomfilter.h \
     qgraphicsnoisereductionfilter.h \
-    qgraphicsblurfilter.h
+    qgraphicsblurfilter.h \
+    qgraphicsvingettingfilter.h \
+    qgraphicssharpenfilter.h
 
 FORMS    += mainwindow.ui \
     imagepropertiesdockwidget.ui \

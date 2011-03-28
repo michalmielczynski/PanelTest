@@ -11,13 +11,13 @@
   - effects might be applied from GUI elements OR from mainwindow (calling same public methods declared in h file);
   - change QSliders to QSpinBox;
   - filters to implement
-    - bloom/glow;
+    - bloom/glow; ok
     - chromatic abberation;
-    - sharpen;
-    - hot pixel;
+    - sharpen; ~ok
+    - hot pixel; ok
     - ...
-    - blur;
-    - vignetting;
+    - blur; ok
+    - vignetting; ~ok
 
   - implement "effect stack" if possible, so effect might be applied "one over other";
   - google out existing Qt based image filtering code, propose possible adaptations;
@@ -38,6 +38,9 @@ ImageEffectsDockWidget::ImageEffectsDockWidget(QGraphicsPixmapItem *p, QWidget *
     m_filterBloom = new QGraphicsBloomFilter(this);
     m_filterNoiseReduction = new QGraphicsNoiseReductionFilter(this);
     m_filterBlur = new QGraphicsBlurFilter(this);
+    m_filterVingetting = new QGraphicsVingettingFilter(this);
+    m_filterSharpen = new QGraphicsSharpenFilter(this);
+
 
     ui->setupUi(this);
     setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
@@ -60,4 +63,14 @@ void ImageEffectsDockWidget::on_pushButtonNoiseReduction_clicked(){
 void ImageEffectsDockWidget::on_pushButtonBlur_clicked()
 {
  m_pGraphicsPixmapItem->setPixmap(m_filterBlur->filter(m_pGraphicsPixmapItem->pixmap(),ui->spinBoxBlur->value()));
+}
+
+void ImageEffectsDockWidget::on_pushButtonVingetting_clicked()
+{
+    m_pGraphicsPixmapItem->setPixmap(m_filterVingetting->filter(m_pGraphicsPixmapItem->pixmap(),ui->spinBoxVingetting->value()));
+}
+
+void ImageEffectsDockWidget::on_pushButtonSharpen_clicked()
+{
+    m_pGraphicsPixmapItem->setPixmap(m_filterSharpen->filter(m_pGraphicsPixmapItem->pixmap(),ui->spinBoxSharpen->value()));
 }
