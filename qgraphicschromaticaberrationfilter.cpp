@@ -1,19 +1,22 @@
 #include "qgraphicschromaticaberrationfilter.h"
 #include <QPixmap>
 #include "qmath.h"
+#include <QtOpenGL>
+
+#define clamp(min,max,a) ((a)>(max)?(max):((a)<(min)?(min):(a)))
 
 
 
-//QImage bilinearSampleImage(QImage img,
-//	const int xResolution, const int yResolution,
-//	const float x, const float y)
-//{
-//	int x1 = Clamp(Floor2UInt(x), 0U, xResolution - 1);
-//	int y1 = Clamp(Floor2UInt(y), 0U, yResolution - 1);
-//	int x2 = Clamp(x1 + 1, 0U, xResolution - 1);
-//	int y2 = Clamp(y1 + 1, 0U, yResolution - 1);
-//	float tx = Clamp(x - static_cast<float>(x1), 0.f, 1.f);
-//	float ty = Clamp(y - static_cast<float>(y1), 0.f, 1.f);
+QImage bilinearSampleImage(QImage img,
+	const int xResolution, const int yResolution,
+	const float x, const float y)
+{
+	int x1 = clamp(x, 0, xResolution - 1);
+	int y1 = clamp(y, 0, yResolution - 1);
+	int x2 = clamp(x1 + 1, 0U, xResolution - 1);
+	int y2 = clamp(y1 + 1, 0U, yResolution - 1);
+	float tx = clamp(x - static_cast<float>(x1), 0.f, 1.f);
+	float ty = clamp(y - static_cast<float>(y1), 0.f, 1.f);
 
 
 //	c.AddWeighted((1.f - tx) * (1.f - ty), pixels[y1 * xResolution + x1]);
@@ -22,7 +25,7 @@
 //	c.AddWeighted(tx         * ty,         pixels[y2 * xResolution + x2]);
 
 //	return c;
-//}
+}
 
 
 

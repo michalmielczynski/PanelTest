@@ -10,9 +10,7 @@ class QGraphicsBloomFilter : public QObject
     Q_OBJECT
 public:
     explicit QGraphicsBloomFilter(QObject *parent = 0);
-    void setRadius(int radiusRange);
-    void setOpacity(int opacityRange);
-    void setBrightness(int brightnessRange);
+
     QPixmap filter(const QPixmap &pixmap, int, int, int,QPainter::CompositionMode mode);
 
 protected:

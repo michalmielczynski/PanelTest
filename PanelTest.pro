@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT += opengl
 
 TARGET = PanelTest
 TEMPLATE = app
