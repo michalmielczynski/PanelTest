@@ -19,6 +19,11 @@ QImage bilinearSampleImage(QImage img,
 	float ty = clamp(y - static_cast<float>(y1), 0.f, 1.f);
 
 
+	QRgb pixel1 = img.pixel(x1,y1);
+	QRgb pixel2 = img.pixel(x2,y1);
+	QRgb pixel3 = img.pixel(x1,y2);
+	QRgb pixel4 = img.pixel(x2,y2);
+
 //	c.AddWeighted((1.f - tx) * (1.f - ty), pixels[y1 * xResolution + x1]);
 //	c.AddWeighted(tx         * (1.f - ty), pixels[y1 * xResolution + x2]);
 //	c.AddWeighted((1.f - tx) * ty,         pixels[y2 * xResolution + x1]);
