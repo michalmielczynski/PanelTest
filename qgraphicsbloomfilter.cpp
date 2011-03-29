@@ -11,7 +11,7 @@ QGraphicsBloomFilter::QGraphicsBloomFilter(QObject *parent)
 
 }
 
-
+/// @todo clean up
 
 
 

@@ -11,7 +11,8 @@
   - effects might be applied from GUI elements OR from mainwindow (calling same public methods declared in h file);
   - change QSliders to QSpinBox;
   - filters to implement
-    - bloom/glow; ok
+    /// @note applying bloom maked image darker. Wrong composing mode?
+    - bloom/glow;
     - chromatic abberation;
     - sharpen; ~ok
     - hot pixel; ok

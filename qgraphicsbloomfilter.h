@@ -13,6 +13,8 @@ public:
     void setRadius(int radiusRange);
     void setOpacity(int opacityRange);
     void setBrightness(int brightnessRange);
+
+    /// @todo name parameters also here
     QPixmap filter(const QPixmap &pixmap, int, int, int);
 
 protected:
