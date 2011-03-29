@@ -64,7 +64,7 @@ void MainWindow::setupDockImageProperties(){
     m_imagePropDockWidget = new ImagePropertiesDockWidget(this);
     addDockWidget(Qt::LeftDockWidgetArea,m_imagePropDockWidget);
 
-    m_imageEffDockWidget = new ImageEffectsDockWidget(m_pixmapItemPointer,this);
+    m_imageEffDockWidget = new ImageEffectsDockWidget(m_pixmapItemPointer,&m_pixmap,this);
     addDockWidget(Qt::RightDockWidgetArea,m_imageEffDockWidget);
 }
 

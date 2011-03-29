@@ -107,7 +107,7 @@ QImage QGraphicsBloomFilter::composited(const QImage& img1, const QImage& img2, 
 }
 
 // Apply Bloom effect with the 4 parameters
-QPixmap QGraphicsBloomFilter::filter(const QPixmap &pixmap, int blurRadius, int brightness, int opacity){
+QPixmap QGraphicsBloomFilter::filter(const QPixmap &pixmap, int blurRadius, int brightness, int opacity,QPainter::CompositionMode mode){
 
     qDebug()<<blurRadius<<brightness<<opacity;
     // (1) blur the original image
@@ -120,7 +120,7 @@ QPixmap QGraphicsBloomFilter::filter(const QPixmap &pixmap, int blurRadius, int 
     QImage step2 = brightened(step1, brightness/5);
 
     // (3) finally overlay with the original image
-    QImage step3 = composited(img, step2, opacity, QPainter::CompositionMode_Multiply);
+    QImage step3 = composited(img, step2, opacity, mode);
 
     return QPixmap::fromImage(step3);
 }

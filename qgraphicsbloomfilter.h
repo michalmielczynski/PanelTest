@@ -13,7 +13,7 @@ public:
     void setRadius(int radiusRange);
     void setOpacity(int opacityRange);
     void setBrightness(int brightnessRange);
-    QPixmap filter(const QPixmap &pixmap, int, int, int);
+    QPixmap filter(const QPixmap &pixmap, int, int, int,QPainter::CompositionMode mode);
 
 protected:
 

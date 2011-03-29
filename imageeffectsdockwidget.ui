@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>442</width>
-    <height>646</height>
+    <height>707</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,6 +15,13 @@
   </property>
   <widget class="QWidget" name="dockWidgetContents">
    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QPushButton" name="pushButtonRestore">
+      <property name="text">
+       <string>Restore</string>
+      </property>
+     </widget>
+    </item>
     <item>
      <widget class="QGroupBox" name="groupBox_2">
       <property name="title">
@@ -87,6 +94,13 @@
         </widget>
        </item>
        <item>
+        <widget class="QComboBox" name="comboBoxBloom">
+         <property name="currentIndex">
+          <number>-1</number>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QPushButton" name="pushButtonBloom">
          <property name="text">
           <string>Apply</string>
@@ -133,6 +147,9 @@
          <property name="prefix">
           <string>Size : </string>
          </property>
+         <property name="minimum">
+          <number>60</number>
+         </property>
         </widget>
        </item>
        <item>
@@ -173,6 +190,45 @@
        </item>
       </layout>
      </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBox_6">
+      <property name="title">
+       <string>Chromatic Aberration</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout_7">
+       <item>
+        <widget class="QSpinBox" name="spinBoxAberration">
+         <property name="prefix">
+          <string>Strength : </string>
+         </property>
+         <property name="minimum">
+          <number>45</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonAberration">
+         <property name="text">
+          <string>Apply</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <spacer name="verticalSpacer">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>20</width>
+        <height>40</height>
+       </size>
+      </property>
+     </spacer>
     </item>
    </layout>
   </widget>

@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     qgraphicsnoisereductionfilter.cpp \
     qgraphicsblurfilter.cpp \
     qgraphicsvingettingfilter.cpp \
-    qgraphicssharpenfilter.cpp
+    qgraphicssharpenfilter.cpp \
+    qgraphicschromaticaberrationfilter.cpp
 
 HEADERS  += mainwindow.h \
     imagepropertiesdockwidget.h \
@@ -27,7 +28,8 @@ HEADERS  += mainwindow.h \
     qgraphicsnoisereductionfilter.h \
     qgraphicsblurfilter.h \
     qgraphicsvingettingfilter.h \
-    qgraphicssharpenfilter.h
+    qgraphicssharpenfilter.h \
+    qgraphicschromaticaberrationfilter.h
 
 FORMS    += mainwindow.ui \
     imagepropertiesdockwidget.ui \

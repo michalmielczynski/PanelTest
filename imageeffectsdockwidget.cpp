@@ -30,11 +30,14 @@
   Do NOT delete widget names in ui - for example ui->blurRadius should be renamed to spinBoxBlurRadius etc.
 */
 
-ImageEffectsDockWidget::ImageEffectsDockWidget(QGraphicsPixmapItem *p, QWidget *parent) :
+ImageEffectsDockWidget::ImageEffectsDockWidget(QGraphicsPixmapItem *p, QPixmap *basePixmap, QWidget *parent) :
     QDockWidget(parent),
     ui(new Ui::ImageEffectsDockWidget),
-    m_pGraphicsPixmapItem(p)
+    m_pGraphicsPixmapItem(p),
+    m_basePixmap(basePixmap)
+
 {
+
     m_filterBloom = new QGraphicsBloomFilter(this);
     m_filterNoiseReduction = new QGraphicsNoiseReductionFilter(this);
     m_filterBlur = new QGraphicsBlurFilter(this);
@@ -45,6 +48,17 @@ ImageEffectsDockWidget::ImageEffectsDockWidget(QGraphicsPixmapItem *p, QWidget *
     ui->setupUi(this);
     setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
     setMinimumSize(200,200);
+
+    ui->comboBoxBloom->setEditable(false);
+    ui->comboBoxBloom->addItem("Add");
+    ui->comboBoxBloom->addItem("Multiply");
+    ui->comboBoxBloom->addItem("Screen");
+    ui->comboBoxBloom->addItem("Overlay");
+    ui->comboBoxBloom->addItem("Darken");
+    ui->comboBoxBloom->addItem("Lighten");
+    ui->comboBoxBloom->addItem("HardLight");
+    ui->comboBoxBloom->addItem("SoftLight");
+
 }
 
 ImageEffectsDockWidget::~ImageEffectsDockWidget(){
@@ -53,7 +67,19 @@ ImageEffectsDockWidget::~ImageEffectsDockWidget(){
 
 
 void ImageEffectsDockWidget::on_pushButtonBloom_clicked(){
-    m_pGraphicsPixmapItem->setPixmap(m_filterBloom->filter(m_pGraphicsPixmapItem->pixmap(),ui->bloomRadius->value(),ui->bloomOpacity->value(),ui->bloomBrightness->value()));
+
+    QPainter::CompositionMode table[] = {
+	QPainter::CompositionMode_Plus,
+	QPainter::CompositionMode_Multiply,
+	QPainter::CompositionMode_Screen,
+	QPainter::CompositionMode_Overlay,
+	QPainter::CompositionMode_Darken,
+	QPainter::CompositionMode_Lighten,
+	QPainter::CompositionMode_HardLight,
+	QPainter::CompositionMode_SoftLight
+    };
+
+    m_pGraphicsPixmapItem->setPixmap(m_filterBloom->filter(m_pGraphicsPixmapItem->pixmap(),ui->bloomRadius->value(),ui->bloomOpacity->value(),ui->bloomBrightness->value(),table[ui->comboBoxBloom->currentIndex()]));
 }
 
 void ImageEffectsDockWidget::on_pushButtonNoiseReduction_clicked(){
@@ -73,4 +99,14 @@ void ImageEffectsDockWidget::on_pushButtonVingetting_clicked()
 void ImageEffectsDockWidget::on_pushButtonSharpen_clicked()
 {
     m_pGraphicsPixmapItem->setPixmap(m_filterSharpen->filter(m_pGraphicsPixmapItem->pixmap(),ui->spinBoxSharpen->value()));
+}
+
+void ImageEffectsDockWidget::on_pushButtonAberration_clicked()
+{
+    m_pGraphicsPixmapItem->setPixmap(m_filterAberration->filter(m_pGraphicsPixmapItem->pixmap(),ui->spinBoxSharpen->value()));
+}
+
+void ImageEffectsDockWidget::on_pushButtonRestore_clicked()
+{
+    m_pGraphicsPixmapItem->setPixmap(*m_basePixmap);
 }
