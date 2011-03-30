@@ -174,10 +174,10 @@
           <string>Strength : </string>
          </property>
          <property name="minimum">
-          <number>10</number>
+          <number>0</number>
          </property>
          <property name="maximum">
-          <number>20</number>
+          <number>21</number>
          </property>
         </widget>
        </item>

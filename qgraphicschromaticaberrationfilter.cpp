@@ -18,7 +18,6 @@ QImage bilinearSampleImage(QImage img,
 	float tx = clamp(x - static_cast<float>(x1), 0.f, 1.f);
 	float ty = clamp(y - static_cast<float>(y1), 0.f, 1.f);
 
-
 	QRgb pixel1 = img.pixel(x1,y1);
 	QRgb pixel2 = img.pixel(x2,y1);
 	QRgb pixel3 = img.pixel(x1,y2);
@@ -73,7 +72,7 @@ QPixmap QGraphicsChromaticAberrationFilter::filter(QPixmap pixmap, int size)
 
 
 			    outp.setPixel(x,y,qRgb(     qRed(pixel)+ 1.f*size, qGreen(pixel), qBlue(pixel)+1 *size ));
-			     outp.setPixel(x,y,qRgb(     qRed(pixel), qGreen(pixel)+1*size, qBlue(pixel) ));
+			    outp.setPixel(x,y,qRgb(     qRed(pixel), qGreen(pixel)+1*size, qBlue(pixel) ));
 			    //outp[xResolution * y + x] += RGBColor(redblue) * bilinearSampleImage<RGBColor>(rgbpixels, xResolution, yResolution, rb_x, rb_y);
 			    //outp[xResolution * y + x] += RGBColor(green) * bilinearSampleImage<RGBColor>(rgbpixels, xResolution, yResolution, g_x, g_y);
 		    }
