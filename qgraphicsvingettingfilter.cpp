@@ -9,6 +9,8 @@ QGraphicsVingettingFilter::QGraphicsVingettingFilter(QObject *parent) :
 {
 }
 
+/// @todo coordinate pixel out of range (bug).
+/// @todo check parameter (size) range.
 QPixmap QGraphicsVingettingFilter::filter(QPixmap pixmap, int size)
 {
 
