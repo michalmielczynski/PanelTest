@@ -11,7 +11,10 @@ QGraphicsSharpenFilter::QGraphicsSharpenFilter(QObject *parent) :
 QPixmap QGraphicsSharpenFilter::filter(const QPixmap pixmap, int size)
 {
     QImage img = pixmap.toImage();
+    img.convertToFormat(QImage::Format_ARGB32_Premultiplied);
+
     QImage temp = img;
+
     double z= size*0.01;
     double mask[] = { 0,   -z  ,   0,
 			 -z,  1+4*z,  -z,

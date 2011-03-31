@@ -32,12 +32,14 @@ QImage QGraphicsBloomFilter::composited(const QImage& img1, const QImage& img2, 
     QImage result = img1.convertToFormat(QImage::Format_ARGB32_Premultiplied);
     QPainter painter(&result);
     painter.setCompositionMode(mode);
-    painter.setOpacity(((qreal)(opacity) / 256.0)*10);
+    float op = (opacity / 256.0);
+    painter.setOpacity(op);
+    qDebug()<<"opacity"<<opacity;
     painter.drawImage(0, 0, img2);
     painter.end();
     return result;
 }
-
+/// @todo check why with opacity == 0 is visible
 // Apply Bloom effect with the 4 parameters
 QPixmap QGraphicsBloomFilter::filter(const QPixmap &pixmap, int blurRadius, int brightness, int opacity,QPainter::CompositionMode mode){
 

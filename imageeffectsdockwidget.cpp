@@ -80,7 +80,7 @@ void ImageEffectsDockWidget::on_pushButtonBloom_clicked(){
 	QPainter::CompositionMode_SoftLight
     };
 
-    m_pGraphicsPixmapItem->setPixmap(m_filterBloom->filter(m_pGraphicsPixmapItem->pixmap(),ui->bloomRadius->value(),ui->bloomOpacity->value(),ui->bloomBrightness->value(),table[ui->comboBoxBloom->currentIndex()]));
+    m_pGraphicsPixmapItem->setPixmap(m_filterBloom->filter(m_pGraphicsPixmapItem->pixmap(),ui->bloomRadius->value(),ui->bloomBrightness->value(),ui->bloomOpacity->value(),table[ui->comboBoxBloom->currentIndex()]));
 }
 
 void ImageEffectsDockWidget::on_pushButtonNoiseReduction_clicked(){

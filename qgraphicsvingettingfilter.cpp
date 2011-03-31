@@ -9,20 +9,24 @@ QGraphicsVingettingFilter::QGraphicsVingettingFilter(QObject *parent) :
 {
 }
 
+/// @todo coordinate pixel out of range (bug).
+/// @todo check parameter (size) range.
 QPixmap QGraphicsVingettingFilter::filter(QPixmap pixmap, int size)
 {
 
     QImage img = pixmap.toImage();
-    QImage temp = img;
     img.convertToFormat(QImage::Format_ARGB32_Premultiplied);
+
+    QImage temp = img;
+    temp.convertToFormat(QImage::Format_ARGB32_Premultiplied);
     float vignetScale = 0.01*size;
 
     const float invxRes = 1.f /img.width();
     const float invyRes = 1.f /img.height();
 
 
-for(int x=0;x<=img.width();++x)
-    for(int y=0;y<=img.height();++y)
+for(int x=0;x<=img.width()-1;x++)
+    for(int y=0;y<=img.height()-1;y++)
     {
 	const float nPx = x * invxRes;
 	const float nPy = y * invyRes;
