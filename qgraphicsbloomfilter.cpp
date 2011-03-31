@@ -27,6 +27,7 @@ QImage QGraphicsBloomFilter::brightened(const QImage& image, int brightness){
     return img;
 }
 
+/// @todo check why with opacity == 0 is visible
 // Composite two QImages using given composition mode and opacity
 QImage QGraphicsBloomFilter::composited(const QImage& img1, const QImage& img2, int opacity, QPainter::CompositionMode mode){
     QImage result = img1.convertToFormat(QImage::Format_ARGB32_Premultiplied);
