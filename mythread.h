@@ -4,7 +4,7 @@
 #include <QGraphicsPixmapItem>
 
 
-class MyThread : public QThread, QObject
+class MyThread : public QThread
 {
     Q_OBJECT
 public:

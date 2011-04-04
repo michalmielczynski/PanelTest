@@ -17,7 +17,7 @@ void MyThread::setParameteres(QGraphicsPixmapItem *p,QPixmap *inPixmap, int inSi
     size = inSize;
 }
 
-void MyThread::run(){
+ void MyThread::run(){
     qDebug()<<"running";
     m_pixmap = filter(*m_pPixmap,this->size);
 }
