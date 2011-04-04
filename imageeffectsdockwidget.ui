@@ -209,7 +209,7 @@
           <string>Strength : </string>
          </property>
          <property name="minimum">
-          <number>45</number>
+          <number>0</number>
          </property>
         </widget>
        </item>
