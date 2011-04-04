@@ -44,6 +44,9 @@ ImageEffectsDockWidget::ImageEffectsDockWidget(QGraphicsPixmapItem *p, QPixmap *
     m_filterBlur = new QGraphicsBlurFilter(this);
     m_filterVingetting = new QGraphicsVingettingFilter(this);
     m_filterSharpen = new QGraphicsSharpenFilter(this);
+    m_thread = new MyThread(this);
+
+
 
 
     ui->setupUi(this);
@@ -84,11 +87,14 @@ void ImageEffectsDockWidget::on_pushButtonBloom_clicked(){
 }
 
 void ImageEffectsDockWidget::on_pushButtonNoiseReduction_clicked(){
-    m_pGraphicsPixmapItem->setPixmap(m_filterNoiseReduction->filter(m_pGraphicsPixmapItem->pixmap(),ui->spinBoxNoiseReduction->value()));
+
+    m_thread->setParameteres(m_pGraphicsPixmapItem,&m_pGraphicsPixmapItem->pixmap(),ui->spinBoxNoiseReduction->value());
+    m_thread->start();
+  //  m_pGraphicsPixmapItem->setPixmap(m_filterNoiseReduction->filter(m_pGraphicsPixmapItem->pixmap(),ui->spinBoxNoiseReduction->value()));
 }
 
 void ImageEffectsDockWidget::on_pushButtonBlur_clicked()
-{
+{  
  m_pGraphicsPixmapItem->setPixmap(m_filterBlur->filter(m_pGraphicsPixmapItem->pixmap(),ui->spinBoxBlur->value()));
 }
 

@@ -4,6 +4,7 @@
 #include <QPoint>
 #include <QDebug>
 #include <QRgb>
+#include <mythread.h>
 
 QGraphicsBloomFilter::QGraphicsBloomFilter(QObject *parent)
 {
@@ -40,16 +41,22 @@ QImage QGraphicsBloomFilter::composited(const QImage& img1, const QImage& img2, 
     painter.end();
     return result;
 }
-/// @todo check why with opacity == 0 is visible
+
+
+
+
 // Apply Bloom effect with the 4 parameters
 QPixmap QGraphicsBloomFilter::filter(const QPixmap &pixmap, int blurRadius, int brightness, int opacity,QPainter::CompositionMode mode){
 
+
+
+
     qDebug()<<blurRadius<<brightness<<opacity;
+
     // (1) blur the original image
 
     QImage img= pixmap.toImage();
     QImage step1 = blur->filter(pixmap,blurRadius).toImage();
-
 
     // (2) increase the brightness of the blurred image
     QImage step2 = brightened(step1, brightness/5);
@@ -58,4 +65,5 @@ QPixmap QGraphicsBloomFilter::filter(const QPixmap &pixmap, int blurRadius, int 
     QImage step3 = composited(img, step2, opacity, mode);
 
     return QPixmap::fromImage(step3);
+
 }

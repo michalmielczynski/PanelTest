@@ -9,6 +9,8 @@
 #include "qgraphicsvingettingfilter.h"
 #include "qgraphicssharpenfilter.h"
 #include "qgraphicschromaticaberrationfilter.h"
+#include "mythread.h"
+
 #include <QPixmap>
 namespace Ui {
     class ImageEffectsDockWidget;
@@ -47,6 +49,7 @@ private:
     QGraphicsVingettingFilter *m_filterVingetting;
     QGraphicsSharpenFilter *m_filterSharpen;
     QGraphicsChromaticAberrationFilter *m_filterAberration;
+    MyThread *m_thread;
 };
 
 #endif // IMAGEEFFECTSDOCKWIDGET_H

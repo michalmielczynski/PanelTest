@@ -69,6 +69,7 @@ QPixmap QGraphicsChromaticAberrationFilter::filter(QPixmap pixmap, int size)
     const float invxRes = 1.f / xResolution;
     const float invyRes = 1.f / yResolution;
     //for each pixel in the source image
+
     for(int y = 0; y < yResolution-1; ++y) {
 	    for(int x = 0; x < xResolution-1; ++x) {
 		    const float nPx = x * invxRes;
