@@ -3,44 +3,36 @@
 #include <QDebug>
 #include <QPixmap>
 
-MyThread::MyThread( QObject *parent):QThread(parent){
+MyThread::MyThread( QObject *parent,QGraphicsPixmapItem *pixmapItem):QThread(parent), m_pixmapItem(pixmapItem){
 
-    m_pPixmap = new QPixmap;
-    m_pixampItem = new QGraphicsPixmapItem;
+    m_pixmap = m_pixmapItem->pixmap();
     connect(this,SIGNAL(finished()),this,SLOT(setPixmap()));
 }
 
-void MyThread::setParameteres(QGraphicsPixmapItem *p,QPixmap *inPixmap, int inSize)
-{
-    m_pPixmap = inPixmap;
-    m_pixampItem = p;
+void MyThread::setParameteres(int inSize){
+    m_pixmap = (m_pixmapItem->pixmap());
     size = inSize;
 }
 
  void MyThread::run(){
     qDebug()<<"running";
-    m_pixmap = filter(*m_pPixmap,this->size);
+    m_pixmap = filter(m_pixmap,size);
 }
 
-void MyThread::setPixmap()
-{
-/// @note there any pixmap in m_pixmap and in m_pPixamp
-    m_pixampItem->setPixmap(*m_pPixmap);
-    qDebug()<<"setting pixmap }";
+void MyThread::setPixmap(){
+    m_pixmapItem->setPixmap(m_pixmap);
+    qDebug()<<"setting pixmap";
 }
 
 
-QPixmap MyThread::filter(QPixmap &inPixmap, int size)
-{
+QPixmap MyThread::filter(QPixmap &inPixmap, int size){
 
    QImage img = inPixmap.toImage();
    QImage temp = img;
    size=100-size*5;
 
-   for(int x=1; x<img.width()-1;x++)
-   {
-       for(int y=1; y<img.height()-1; y++)
-       {
+   for(int x=1; x<img.width()-1;x++){
+       for(int y=1; y<img.height()-1; y++){
 	   QColor p5(img.pixel(x,y));
 
 	   QColor p1(img.pixel(x-1,y-1));
@@ -79,8 +71,7 @@ QPixmap MyThread::filter(QPixmap &inPixmap, int size)
 
 	    if( minMedianPointDiffR>p5.red() || maxMedianPointDiffR<p5.red() ||
 		minMedianPointDiffG>p5.green() || maxMedianPointDiffG<p5.green() ||
-		minMedianPointDiffB>p5.blue() || maxMedianPointDiffB<p5.blue())
-		{
+		minMedianPointDiffB>p5.blue() || maxMedianPointDiffB<p5.blue()){
 		    temp.setPixel(x,y,qRgb(avgR,avgG,avgB));
 		}
 
